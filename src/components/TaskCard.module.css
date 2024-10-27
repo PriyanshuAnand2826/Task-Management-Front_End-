@@ -1,0 +1,105 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border-radius: 10px;
+  padding: 3% 5%;
+  margin-top: 10%;
+  position: relative;
+  width: 100%;
+}
+.header{
+  display: flex;
+  justify-content: space-between;
+}
+.priority{
+  display: flex;
+  gap: 5px;
+}
+.priority p{
+  font-size: 10px;
+  color: #707070;
+ text-transform: uppercase;
+ margin-top: 5%;
+ margin-left: -1%;
+
+}
+.btn_logo{
+  background-color: #FFEBEB;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  font-size: 8px;
+  border: none;
+  margin-top: 3%;
+}
+.taskname{
+  font-size: 20px;
+  font-family: "Poppins";
+  margin-top: 5%;
+}
+.checklist{
+  margin-top: 3%;
+  display: flex;
+  justify-content: space-between;
+}
+.checklist p{
+  font-size: 12px;
+}
+.task_list{
+  margin-top: 5%;
+  border: 1.5px solid #E2E2E2;
+  border-radius: 7px;
+  padding: 3% 5%;
+}
+
+.task_container{
+  display: flex;
+  gap: 10px;
+}
+.task_container span{
+  font-size: 15px;
+}
+.footer{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10%;
+}
+.btn_date{
+  font-size: 7px;
+  background-color: #CF3636;
+  padding: 2% 4%;
+  border-radius: 7px;
+  color: #FFFFFF;
+}
+.btn_priority{
+  display: flex;
+  margin-right: 10%;
+  gap: 5px;
+  
+}
+.btn{
+  font-size: 7px;
+  background-color: #EEECEC;
+  padding: 2% 4%;
+  border: none;
+  color: #767575;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.options_menu{
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  width: 30%;
+  gap: 5px;
+  padding: 7px 10px;
+  right: 7%;
+  z-index: 2;
+  margin-top: 10%;
+  border-radius: 5px;
+  font-size: 12px;
+  box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  cursor: pointer;
+}

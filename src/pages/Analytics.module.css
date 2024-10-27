@@ -1,0 +1,16 @@
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+.left{
+  width: 20%;
+  overflow: hidden;
+}
+.right{
+  flex: 1;
+  overflow: auto;
+  display: flex;
+  gap: 20px;
+  padding: 7% 7%;
+}

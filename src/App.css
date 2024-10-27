@@ -1,0 +1,35 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  font-family: "Poppins", sans-serif;
+}
+
+.custom-input {
+  background-color: #f0f0f0; /* Custom background color for the input field */
+  border: 1px solid #ccc;
+  padding: 10px;
+  padding-left: 20px;
+  border-radius: 5px;
+  width: 100%;
+  margin-left: 5px;
+  }
+  
+.custom-toast{
+  background-color: #CF3636;
+  opacity: 90%;
+  }
+.custom-progress-login{
+  background-color: black;
+  }
+    
+  
+  
+ 
+
+
+
+
+

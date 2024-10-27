@@ -1,0 +1,213 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  font-family: 'Inter';
+  margin: 3%;
+  position: relative;
+  overflow-y: auto;
+  overflow-x: hidden;
+
+}
+.input_container{
+ 
+  display: flex;
+  flex-direction: column;
+ 
+}
+.input_field{
+   margin-top: 1%;
+  padding: 8px 10px;
+  border: 1.5px solid #4D40551A;
+  outline: none;
+  border-radius: 7px;
+  
+}
+
+
+.priority_container{
+  display: flex;
+  margin-top: 2%;
+  gap: 20px;
+}
+
+.priroty_status{
+  display: flex;
+  gap: 5px;
+  font-weight: bold;
+  border: 1.5px solid #E2E2E2;
+  border-radius: 4px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.assign_container{
+  display: flex;
+  gap: 9%;
+  margin-top: 3%;
+}
+.dropdown{
+  width: 90%;
+  border: none;
+  background: none;
+  outline: none;
+  padding: 7px 10px;
+  
+}
+
+
+.circle{
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  color: red;
+}
+.assign_input_container{
+  display: flex;
+  flex: 1;
+  border: 1.5px solid #4D40551A;
+  border-radius: 5px;
+}
+
+.options{
+  display: flex;
+  border: 1.5px solid #7E7A7A14;
+  width: 80%;
+  margin-left: 19.5%;
+  margin-top: 1%;
+  padding: 10px 10px;
+  border-radius: 5px;
+  
+}
+.btn_logo{
+  background-color: #FFEBEB;
+  border-radius: 50%;
+  width: 40px ;
+  height: 40px;
+  border: none;
+}
+.assign_btn{
+  font-family: "Poppins", sans-serif;
+  border: 1.5px solid #E2E2E2;
+  background: none;
+  width: 30%;
+  border-radius: 7px;
+  cursor: pointer;
+}
+.add_item{
+  display: flex;
+  cursor: pointer;
+  gap: 10px;
+  margin-top: 2%;
+}
+.task_container{
+  display: flex;
+  border: 1.5px solid #E2E2E2;
+  padding: 5px 10px;
+  margin-top: 1%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.task_input_field{
+  width: 95%;
+  margin-left: 10px;
+  border: none;
+  outline: none;
+}
+
+
+.footer{
+  display: flex;
+  height: 10%;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 4%;
+ 
+}
+
+.btn_container{
+  width: 40%;
+  
+}
+
+.btn_cancel{
+  padding: 8px 10px;
+  margin-right: 20px;
+  width: 40%;
+  border: 1.5px solid #CF3636;
+  background: none;
+  cursor: pointer;
+  border-radius: 7px;
+  color: #CF3636;
+  font-weight: bold;
+}
+.btn_save{
+  padding: 8px 10px;
+  width: 40%;
+  cursor: pointer;
+  border-radius: 7px;
+  border: none;
+  background-color: #17A2B8;
+  color: white;
+  font-weight: bold;
+}
+
+.date_div{
+  border: 1.5px solid #707070;
+  border-radius: 7px;
+  
+}
+
+.date{
+ width: 100%;
+ background: none;
+ border: 1.5px solid #E2E2E2;
+ border-radius: 7px;
+ padding: 10px 10px;
+}
+
+/* pseudo styling */
+
+.input_field:focus{
+  border: 1.5px solid #17A2B8;
+}
+/* .assign_input_container:focus{
+  border: 1.5px solid #17A2B8;
+} */
+
+input[type="checkbox"]:checked {
+  color: #17A2B8; /* Custom color when checked */
+  background-color: #007bff;
+       /* Custom border when checked */
+}
+input[type="checkbox"] {
+  accent-color: #17A2B8;
+}
+
+/* Optional: Style the checkmark */
+input[type="checkbox"]:checked::after {
+  content: '✔';
+  color: white;
+  display: block;
+  font-size: 16px;
+  text-align: center;
+  line-height: 18px; /* Align the checkmark vertically */
+  border-radius: 10px;
+}
+
+
+.container::-webkit-scrollbar{
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-track{
+  border-radius: 5px;
+}
+
+.container::-webkit-scrollbar-thumb{
+  background: #8DAAB9CC;
+  opacity: 0.6;
+  border-radius: 10px;
+}

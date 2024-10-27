@@ -1,0 +1,40 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  border: 1.5px solid #EDF5FE;
+  height: 100%;
+  padding: 5% 7%;
+
+}
+.field_container{
+  display: flex;
+  padding: 5% 5% ;
+  margin-top: 7%;
+  border-radius: 7px;
+  width: 100%;
+}
+
+.app_fields .field_container:hover{
+  cursor: pointer;
+  background-color: #4391ED1A;
+}
+.img{
+  width: 20px;
+  height: 20px;
+}
+.name{
+  margin-left: 6%;
+  margin-top: -1%;
+  font-size: 1.1rem;
+}
+.app_fields{
+  margin-top: 10%;
+}
+.logout{
+  color: #CF3636;
+  position: absolute;
+  bottom: 5%;
+  margin-left: 1%;
+  cursor: pointer;
+
+}

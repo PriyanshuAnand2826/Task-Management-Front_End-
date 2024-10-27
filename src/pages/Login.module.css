@@ -1,0 +1,13 @@
+.container{
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+.left{
+  width: 65%;
+  
+}
+.right{
+  flex: 1;
+  margin-top: 5rem;
+}

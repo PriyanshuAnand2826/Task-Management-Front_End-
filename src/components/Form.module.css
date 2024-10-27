@@ -1,0 +1,45 @@
+.field_container{
+  border: 1.5px solid #D0D0D0;
+  border-radius: 7px;
+  margin-top: 1rem;
+  padding: 2% 1.5%;
+  width: 60%;
+  display: flex;
+}
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input_field{
+  border: none;
+  outline: none;
+  width: 100%;
+  margin-left: 0.7rem;
+}
+.btn1{
+  background-color: #17A2B8;
+  padding: 8px 10px;
+  border:none;
+  width: 60%;
+  margin-top: 2rem;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+}
+.btn2{
+  border: 1px solid #17A2B8;
+  padding: 8px 10px;
+  width: 60%;
+  margin-top: 1rem;
+  border-radius: 15px;
+  background-color: white;
+  cursor: pointer;
+  margin-bottom: 1rem;
+}
+
+.field_container:focus{
+  border: 2px solid #17A2B8; /* Add blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 0, 255, 0.5); /* Optional: Add blue shadow */
+}

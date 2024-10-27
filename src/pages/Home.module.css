@@ -1,0 +1,43 @@
+.container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+.left{
+  width: 20%;
+  overflow: hidden;
+  
+}
+.right{
+  flex: 1;
+  overflow: auto;
+}
+.right_header{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 2%;
+  padding-right: 5%;
+}
+.subheader{
+  display: flex;
+  justify-content: space-between;
+  padding: 1% 2%;
+  padding-right: 5%;
+}
+.left_board{
+  display: flex;
+  gap: 20px;
+}
+.select{
+  border: none;
+  outline: none;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.mid{
+  display: flex;
+  gap: 30px;
+  height: 80%;
+  padding: 1% 2%;
+}

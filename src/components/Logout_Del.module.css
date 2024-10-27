@@ -1,0 +1,35 @@
+.container{
+  display: flex;
+  padding: 5% 10%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.container span{
+  font-family: "Noto Sans";
+  font-size: 17px;
+  font-weight: bold;
+}
+.btn_top{
+  padding: 3% 10%;
+  background-color: #17A2B8;
+  border: none;
+  width: 70%;
+  border-radius: 10px;
+  color: white;
+  font-family: "Poppins";
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn_bottom{
+  padding: 3% 10%;
+background: none;
+  border: 1.5px solid #CF3636;
+  width: 70%;
+  border-radius: 10px;
+  color: #CF3636;
+  font-family: "Poppins";
+  font-weight: bold;
+  cursor: pointer;
+}
