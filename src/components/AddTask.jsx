@@ -4,7 +4,6 @@ import { GoDotFill } from "react-icons/go";
 import { FaAngleDown } from "react-icons/fa";
 import { FaPlus } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
-import "react-datepicker/dist/react-datepicker.css";
 import { CiCalendarDate } from "react-icons/ci";
 import formatDate from "../data/formatDate";
 import { ToastContainer,toast } from "react-toastify";
