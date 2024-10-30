@@ -4,7 +4,7 @@ import promanage from "../assets/codesandbox.png";
 import analytics from "../assets/database.png";
 import settings from "../assets/settings.png";
 import board from "../assets/layout.png";
-import logout from "../assets/logout.png";
+import logout from "../assets/Logout.png";
 import Modal from "../../Modal";
 import Logout_Del from "./Logout_Del";
 import { useNavigate,useLocation } from "react-router-dom";
