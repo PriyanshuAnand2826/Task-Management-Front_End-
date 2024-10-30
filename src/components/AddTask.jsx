@@ -26,6 +26,7 @@ function Priority({ title, color, onClick, isClicked }) {
 export default function AddTask({ onClose }) {
   const [isShown, setisShown] = useState(false);
   const [tasklist, setTasklist] = useState([]);
+  const [users, setusers] = useState([]);
   const [checkedCount, setCheckedCount] = useState(0);
   const [inputType, setInputType] = useState("text");
   const [error, setError] = useState({

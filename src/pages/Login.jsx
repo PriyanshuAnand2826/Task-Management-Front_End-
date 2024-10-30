@@ -7,6 +7,9 @@ import { CiLock } from "react-icons/ci";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import { login } from '../services/auth';
+import { toast } from 'react-toastify';
+
 
 
 
@@ -70,9 +73,19 @@ export default function Login() {
     },
   
   }
+    
+   //sending toast 
+    const notify =(data)=>{
+    toast(data,{
+    className:'custom-toast',
+    progressClassName:'custom-progress-login',
+    style:{color:'white',fontFamily:'Poppins',fontWeight:'bold',textAlign:'center',fontSize:'15px'}
+    })
+    }
+
 
   //onsubmit handler 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     let isError = false
     event.preventDefault()
     console.log("form submitted");
@@ -85,7 +98,22 @@ export default function Login() {
       }
     })
     if(!isError){
-      navigate('/board')
+      const res = await login(formData)
+      console.log(res)
+      if(res.status ===200){
+        const {token}=res.data
+        const{name}=res.data
+        localStorage.setItem("token",token)
+        localStorage.setItem("name",name)
+        setTimeout(()=>{
+          navigate('/board')
+        },2500)
+      }
+      notify(res.data.message)
+    
+    }
+    else{
+      notify("Fields are required")
     }
 
   }

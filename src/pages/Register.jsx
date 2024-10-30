@@ -9,6 +9,8 @@ import { CiLock } from "react-icons/ci";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { toast } from 'react-toastify'
+import { register } from '../services/auth'
+
 
 
 
@@ -37,7 +39,7 @@ export default function Register() {
     name: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    confirmpassword: '',
   })
   const formFields  =[
       {
@@ -79,7 +81,7 @@ export default function Register() {
         value:formdata.confirmPassword,
         iconEnd:isShownCP?<FaRegEyeSlash onClick={confirmpasswordToggling} cursor={"pointer"} style={{marginRight:'0.3rem'}}/>:<FaRegEye onClick={confirmpasswordToggling} cursor={"pointer"} style={{marginRight:'0.3rem'}}/>,
         onchange : (e) =>{
-          setformdata({...formdata,confirmPassword:e.target.value})
+          setformdata({...formdata,confirmpassword:e.target.value})
         }
       }
   ]
@@ -108,7 +110,7 @@ export default function Register() {
     },
     confirmPassword:{
       message:"Field is required",
-      isValid:formdata.confirmPassword.length>0,
+      isValid:formdata.confirmpassword.length>0,
       onError: ()=>{
         seterror((error)=>({...error,confirmPassword:true}))
       }
@@ -127,22 +129,34 @@ export default function Register() {
 
   //onsubmit button click 
 
-  const onSubmit =(event)=>{
+  const onSubmit =async(event)=>{
     let isError = false
     event.preventDefault()
     console.log("form submitted");
     console.log(formdata)
     console.log(error)
-     notify("Register Clicked")
+     
     Object.keys(ErrorMessages).forEach((key)=>{
       if(!ErrorMessages[key].isValid){
         isError=true
         ErrorMessages[key].onError()
+        
       }
     })
     if(!isError){
       //now i have to call the api
-      navigate('/login')
+      const res = await register(formdata)
+      console.log(res)
+      if(res.status===200){
+        setTimeout(()=>{
+          navigate('/login')
+        },2500)
+        
+      }
+       notify(res.data.message)
+    }
+    else{
+      notify("Fields are Required")
     }
   }
   return (

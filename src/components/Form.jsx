@@ -66,7 +66,7 @@ export default function Form({
       >
         <ToastContainer
           position="top-right"
-          autoClose={3000}
+          autoClose={2500}
           hideProgressBar={false}
           newestOnTop={false}
           closeOnClick

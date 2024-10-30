@@ -13,6 +13,8 @@ import { ToastContainer } from "react-toastify";
 export default function Home() {
   const { date } = formatDate();
   const [isModalOpen, setIsModalOpen] = useState(false); //for notes modal
+  const name = localStorage.getItem("name")
+  const firstName = name.split(" ")[0];
 
   //for opening the modal
   const openModal = () => {
@@ -31,7 +33,7 @@ export default function Home() {
       </div>
       <div className={styles.right}>
         <div className={styles.right_header}>
-          <p style={{ fontWeight: "bold" }}>Welcome!Kumar</p>
+          <p style={{ fontWeight: "bold" }}>Welcome{","}{firstName}</p>
           <p style={{ color: "#707070" }}>{date}</p>
         </div>
         <div className={styles.subheader}>

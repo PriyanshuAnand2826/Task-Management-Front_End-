@@ -10,8 +10,6 @@ import Logout_Del from "./Logout_Del";
 import { useNavigate,useLocation } from "react-router-dom";
 
 function Field({ icon, name, isBold, index }) {
-  const location = useLocation()
-  console.log(location)
   return (
     <div className={styles.field_container}>
       <img className={styles.img} src={icon} alt="" />
@@ -26,6 +24,7 @@ function Field({ icon, name, isBold, index }) {
 }
 
 export default function Sidebar() {
+  const location = useLocation()
   const [isLogoutmodelOpen, setIsLogoutmodal] = useState(false);
   const navigate =useNavigate()
   const handleOnClick = (route) => {
