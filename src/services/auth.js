@@ -37,7 +37,28 @@ export const getAlluser =async ()=>{
   } catch (error) {
     return error
   }
- 
+ }
 
+export const getSearchUser =async(searchchar)=>{
+  try {
+    const res = await axios.get(`${import.meta.env.VITE_SOME_KEY}/user/search/${searchchar}`)
+    return res
+  } catch (error) {
+    return error
+  }
+}
+
+export const updateUser = async (data)=>{
+  try {
+    const res = await axios.put(`http://localhost:3000/user/update`,data,{
+      headers:{
+        Authorization: `${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json',
+      }
+    })
+    return res
+  } catch (error) {
+    return error
+  }
 }
 

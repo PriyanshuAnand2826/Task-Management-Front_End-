@@ -78,14 +78,17 @@
   margin-top: 1%;
   padding: 10px 10px;
   border-radius: 5px;
+  overflow-y: auto  ;
   
 }
 .btn_logo{
   background-color: #FFEBEB;
   border-radius: 50%;
-  width: 40px ;
+  width: 50px ;
   height: 40px;
+  font-weight: bold;
   border: none;
+  text-transform: uppercase; 
 }
 .assign_btn{
   font-family: "Poppins", sans-serif;
