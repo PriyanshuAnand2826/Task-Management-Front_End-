@@ -36,6 +36,11 @@ export default function Sidebar() {
   const closemodal = () => {
     setIsLogoutmodal(false);
   };
+
+  const handleClick =()=>{
+    localStorage.removeItem("token")
+    navigate('/')
+  }
   const App_fields = [
     { name: "Board", icon: board ,navigate:'/board' },
     { name: "Analytics", icon: analytics,navigate:'/analytics' },
@@ -46,7 +51,8 @@ export default function Sidebar() {
     headtext:"Are you sure you want to Logout?",
     btn_top:'Yes, Logout',
     btn_bottom:'Cancel',
-    onclose:()=>closemodal
+    onclose:()=>closemodal,
+    onClick:()=>handleClick
   }
   return (
     <div className={styles.container}>

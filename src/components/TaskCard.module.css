@@ -37,6 +37,11 @@
   font-size: 20px;
   font-family: "Poppins";
   margin-top: 5%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limits text to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .checklist{
   margin-top: 3%;
@@ -67,10 +72,9 @@
 }
 .btn_date{
   font-size: 7px;
-  background-color: #CF3636;
   padding: 2% 4%;
   border-radius: 7px;
-  color: #FFFFFF;
+  font-weight: bold;
 }
 .btn_priority{
   display: flex;
@@ -86,6 +90,7 @@
   color: #767575;
   border-radius: 4px;
   cursor: pointer;
+  text-transform: uppercase;
 }
 .options_menu{
   position: absolute;

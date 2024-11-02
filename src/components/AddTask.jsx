@@ -26,7 +26,7 @@ function Priority({ title, color, onClick, isClicked }) {
 
 // main exported component
 
-export default function AddTask({ onClose }) {
+export default function AddTask({ onClose ,data}) {
   //all states
 
   const [isShown, setisShown] = useState(false);
@@ -52,8 +52,34 @@ export default function AddTask({ onClose }) {
     priority: "",
     duedate: "",
     taskdata: [],
-    assign: "",  // Email of the assignee
+    assign: "",
+    totallength:''  // Email of the assignee
   }); 
+
+  (data && useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const res = await getTaskbyId(id);
+        console.log(res)
+        if(res.data.success){
+          setTaskDetails({
+            taskname: res.data.data.taskname,
+            priority:res.data.data.priority,
+            taskdata:res.data.data.taskdata,
+            totallength:res.data.data.taskdata.length,
+            duedate:res.data.data?.duedate
+          })
+      }
+      } catch (error) {
+        return error
+      }
+
+    }
+
+
+    fetchData();
+  },[])
+)
 
 
 
@@ -134,7 +160,12 @@ export default function AddTask({ onClose }) {
   const handleDelete = (id) => {
     const newlist = tasklist.filter((item) => item.id !== id);
     setTasklist(newlist);
-  };
+    tasklist.map((item,index)=>{
+      if(id === item.id && item.checked){
+        setCheckedCount(checkedCount-1)
+      }
+    })
+  }
   //handle save button
   const handleSave = async() => {
     if (taskRef.current.value.length === 0) {
@@ -190,8 +221,8 @@ export default function AddTask({ onClose }) {
    
   //  console.log(dataToSend)
     
-   const res = await CreateTask(dataToSend);
-   console.log(res)
+  //  const res = await CreateTask(dataToSend);
+  //  console.log(res)
 
 
     

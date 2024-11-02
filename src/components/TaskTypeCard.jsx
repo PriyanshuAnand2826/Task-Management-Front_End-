@@ -6,12 +6,14 @@ import TaskCard from "./TaskCard";
 export default function TaskTypeCard({
   name,
   icon,
+  data,
+  btn_data
 }) {
   const [isCollapse,setIsCollapse] = useState(true);
   const handleCollapseAll = () => {
     setIsCollapse((prev) => !prev);
   }
-
+  
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -19,12 +21,9 @@ export default function TaskTypeCard({
         <button onClick={handleCollapseAll} style={{background:'none',border:'none'}}>{icon}</button>
       </div>
       <div className={styles.task_card_container}>
-        <TaskCard isCollapse={isCollapse}  />
-        <TaskCard isCollapse={isCollapse} />
-        <TaskCard isCollapse={isCollapse} />
-        <TaskCard isCollapse={isCollapse}  />
-        <TaskCard isCollapse={isCollapse} />
-        <TaskCard isCollapse={isCollapse} />
+        {data.map((item,index)=>{
+          return <TaskCard isCollapse={isCollapse} key={index} data={item} btn_data={btn_data} />
+        })}
       </div>
     </div>
   );

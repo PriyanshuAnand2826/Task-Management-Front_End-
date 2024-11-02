@@ -6,6 +6,7 @@ import NotFound from './pages/NotFound'
 import Home from './pages/Home'
 import Analytics from './pages/Analytics'
 import Settings from './pages/Settings'
+import ViewTask from './pages/ViewTask'
 import "react-toastify/dist/ReactToastify.css";
 
 
@@ -21,6 +22,7 @@ function App() {
           <Route path="/board" element={<Home/>} /> 
           <Route path="/analytics" element={<Analytics/>} /> 
           <Route path="/settings" element={<Settings/>} /> 
+          <Route path="/viewtask/:id" element={<ViewTask/>} /> 
           <Route path="*" element={<NotFound/>} /> 
         </Routes>
       

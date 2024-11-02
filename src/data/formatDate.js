@@ -2,8 +2,8 @@ const formatDate = (date = Date.now()) => {
   const newDate = new Date(date);
   
   const options = {
-    day: "numeric",
-    month: "short",  // Use "short" for abbreviated month (e.g., Jan, Feb)
+    day: 'numeric',
+    month: 'short',
     year: "numeric"  // Full year (e.g., 2024)
   };
   

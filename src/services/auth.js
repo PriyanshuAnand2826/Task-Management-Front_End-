@@ -50,7 +50,7 @@ export const getSearchUser =async(searchchar)=>{
 
 export const updateUser = async (data)=>{
   try {
-    const res = await axios.put(`http://localhost:3000/user/update`,data,{
+    const res = await axios.put(`${import.meta.env.VITE_SOME_KEY}/user/update`,data,{
       headers:{
         Authorization: `${localStorage.getItem("token")}`,
         'Content-Type': 'application/json',
@@ -60,5 +60,18 @@ export const updateUser = async (data)=>{
   } catch (error) {
     return error
   }
+}
+
+export const AddBoard_ =async(email)=>{
+ try {
+  const res = await  axios.put(`${import.meta.env.VITE_SOME_KEY}/task/addboard`,{assign:email},{
+    headers:{
+        Authorization: `${localStorage.getItem("token")}`
+    }
+  })
+  return res
+ } catch (error) {
+  return error
+ }
 }
 

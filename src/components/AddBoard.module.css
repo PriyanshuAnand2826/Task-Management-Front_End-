@@ -1,0 +1,40 @@
+.container{
+  display: flex;
+  flex-direction: column;
+  padding: 10% 10% ;
+  gap: 20px;
+  width: 100%;
+}
+.input{
+  padding: 3% 5%;
+  border-radius: 7px;
+  border: 1.5px solid #767575;
+  outline: none;
+  margin-top:5%;
+}
+.footer{
+  display: flex;
+  gap: 10px;
+}
+.btn_left{
+  padding: 3% 10%;
+background: none;
+  border: 1.5px solid #CF3636;
+  width: 70%;
+  border-radius: 10px;
+  color: #CF3636;
+  font-family: "Poppins";
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn_right{
+  padding: 3% 10%;
+  background-color: #17A2B8;
+  border: none;
+  width: 70%;
+  border-radius: 10px;
+  color: white;
+  font-family: "Poppins";
+  font-weight: bold;
+  cursor: pointer;
+}

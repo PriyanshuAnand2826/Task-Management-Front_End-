@@ -1,0 +1,59 @@
+.container{
+  display: flex; 
+  overflow: auto;
+}
+.field_container{
+  display: flex;
+  gap: 10px;
+  margin-top: 10%;
+  margin-left: 10%;
+}
+.left{
+  width: 20%;
+  overflow: hidden;
+}
+.img{
+  width: 20px;
+  height: 20px;
+}
+.right{
+  flex: 1;
+  display: flex;
+  overflow-y: hidden;
+ 
+}
+.right_container{
+ margin-left: 20%;
+  margin-top: 10%;
+  /* box-shadow: 0 3px 10px rgb(0 0 0 / 0.2); */
+  border: 2.5px solid #EDF5FE;
+  display: flex;
+  flex-direction: column;
+  padding:2% 2%;
+  border-radius: 10px;
+  width: 40%;
+  
+ 
+}
+.header{
+  display: flex;
+  gap: 4px;
+}
+.checklist{
+  display: flex;
+  border: 1.5px solid #E2E2E2;
+  margin-top: 4%;
+  padding: 2% 2%;
+  border-radius: 8px;
+}
+.footer{
+  display: flex;
+  margin-top: 4%;
+  gap: 20px;
+}
+.btn{
+  border: none;
+  background: none;
+  padding: 2% 2%;
+  border-radius: 7px;
+}
