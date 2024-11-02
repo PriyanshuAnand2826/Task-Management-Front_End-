@@ -24,7 +24,7 @@ export default function AddBoard({closemodal}) {
     try {
       const response = await AddBoard_(email)
       console.log(response)
-      if(response.status === 400){
+      if(response.status === 404){
         notify("User not found")
       }
       else{

@@ -146,7 +146,7 @@ export default function TaskCard({isCollapse,data,btn_data}) {
       </div> }
       {isEditModal &&(<Modal>
         <AddTask
-         data={data._id}
+         id={data._id}
          onClose ={closeEditModal}
            />
       </Modal>)}

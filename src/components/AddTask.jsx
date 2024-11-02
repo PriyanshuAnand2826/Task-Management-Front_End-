@@ -9,7 +9,7 @@ import formatDate from "../data/formatDate";
 import { ToastContainer, toast } from "react-toastify";
 import { getSearchUser } from "../services/auth";
 import getFirstTwoLettersOfEmail from "../data/nameLogo";
-import { CreateTask } from "../services/task";
+import { CreateTask, getTaskbyId } from "../services/task";
 
 function Priority({ title, color, onClick, isClicked }) {
   return (
@@ -26,9 +26,9 @@ function Priority({ title, color, onClick, isClicked }) {
 
 // main exported component
 
-export default function AddTask({ onClose ,data}) {
+export default function AddTask({ onClose ,id}) {
   //all states
-
+  console.log(id)
   const [isShown, setisShown] = useState(false);
   const [tasklist, setTasklist] = useState([]);
   const [users, setusers] = useState([]);
@@ -47,39 +47,29 @@ export default function AddTask({ onClose ,data}) {
     low: false,
   });
     
+
+ const [data,setdata] =useState({
+    title: "",
+    priority:"",
+    taskdata:[],
+    totallength:'',
+    duedate:''
+  })
+
+  
   const [taskDetails, setTaskDetails] = useState({
     taskname: "",
     priority: "",
     duedate: "",
     taskdata: [],
-    assign: "",
+    assign: null,
     totallength:''  // Email of the assignee
   }); 
 
-  (data && useEffect(()=>{
-    const fetchData = async () => {
-      try {
-        const res = await getTaskbyId(id);
-        console.log(res)
-        if(res.data.success){
-          setTaskDetails({
-            taskname: res.data.data.taskname,
-            priority:res.data.data.priority,
-            taskdata:res.data.data.taskdata,
-            totallength:res.data.data.taskdata.length,
-            duedate:res.data.data?.duedate
-          })
-      }
-      } catch (error) {
-        return error
-      }
-
-    }
 
 
-    fetchData();
-  },[])
-)
+
+
 
 
 
@@ -166,6 +156,8 @@ export default function AddTask({ onClose ,data}) {
       }
     })
   }
+
+
   //handle save button
   const handleSave = async() => {
     if (taskRef.current.value.length === 0) {
@@ -197,43 +189,12 @@ export default function AddTask({ onClose ,data}) {
       taskdata:tasklist,
       duedate:"21-9-2024"
     })
-    // console.log(taskDetails)
-
-
-    const { taskname, priority, taskdata, assign, duedate } = taskDetails;
-  
-    // Prepare the data to send to the backend
-    const dataToSend = {
-      taskname,
-      priority,
-      taskdata,
-    };
-  
-    // Only add assign and duedate if they are not empty
-    if (assign) {
-      dataToSend.assign = assign;
-    }
-    
-    if (duedate) {
-      dataToSend.duedate = duedate;
-    }
-    
    
-  //  console.log(dataToSend)
-    
-  //  const res = await CreateTask(dataToSend);
-  //  console.log(res)
-
-
-    
-
-    // onClose()
-    // notify("Task created successfully");
-
-    // console.log(tasklist);
-    // const {date} = formatDate(dateRef.current.value)
-    // console.log(date)
+    // const res = await CreateTask(taskDetails)
+    // console.log(res)
   };
+  console.log(taskDetails)
+ 
 
   return (
     <div className={styles.container}>
@@ -247,6 +208,7 @@ export default function AddTask({ onClose ,data}) {
           className={styles.input_field}
           placeholder="Enter Task Title"
           name="title"
+        
         />
       </div>
       {error.taskTitle ? (
@@ -274,7 +236,7 @@ export default function AddTask({ onClose ,data}) {
         <Priority
           title={"MODERATE PRIORITY"}
           color={"#18B0FF"}
-          isClicked={prioirty.mid}
+          isClicked={data.priority||prioirty.mid}
           onClick={() => setPriority({ mid: true })}
         />
         <Priority
