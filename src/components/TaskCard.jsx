@@ -84,7 +84,7 @@ export default function TaskCard({isCollapse,data,btn_data}) {
  
 
   useEffect(()=>{
-     if(data.priority === "medium"){
+     if(data.priority === "mid"){
       setColorPriority("#18B0FF")
      }
      if(data.priority==='low'){
@@ -146,6 +146,7 @@ export default function TaskCard({isCollapse,data,btn_data}) {
       </div> }
       {isEditModal &&(<Modal>
         <AddTask
+         mode={"edit"}
          id={data._id}
          onClose ={closeEditModal}
            />

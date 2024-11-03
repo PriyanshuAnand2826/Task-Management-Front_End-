@@ -9,7 +9,7 @@ import formatDate from "../data/formatDate";
 import { ToastContainer, toast } from "react-toastify";
 import { getSearchUser } from "../services/auth";
 import getFirstTwoLettersOfEmail from "../data/nameLogo";
-import { CreateTask, getTaskbyId } from "../services/task";
+import { CreateTask, getTaskbyId, updateTask } from "../services/task";
 
 function Priority({ title, color, onClick, isClicked }) {
   return (
@@ -26,7 +26,7 @@ function Priority({ title, color, onClick, isClicked }) {
 
 // main exported component
 
-export default function AddTask({ onClose ,id}) {
+export default function AddTask({ onClose ,id,mode}) {
   //all states
   console.log(id)
   const [isShown, setisShown] = useState(false);
@@ -56,15 +56,7 @@ export default function AddTask({ onClose ,id}) {
     duedate:''
   })
 
-  
-  const [taskDetails, setTaskDetails] = useState({
-    taskname: "",
-    priority: "",
-    duedate: "",
-    taskdata: [],
-    assign: null,
-    totallength:''  // Email of the assignee
-  }); 
+
 
 
 
@@ -81,6 +73,8 @@ export default function AddTask({ onClose ,id}) {
   const taskRef = useRef(null);
   const assiginRef = useRef(null);
   const dateRef = useRef(null);
+  const taskdata_ref = useRef(null)
+  const taskdatacheck_ref = useRef(null)
 
   //sending toast
   const notify = (data) => {
@@ -181,6 +175,9 @@ export default function AddTask({ onClose ,id}) {
         }
       });
     }
+     
+
+    
 
     const res = await CreateTask({
       taskname:taskRef.current.value,
@@ -190,22 +187,61 @@ export default function AddTask({ onClose ,id}) {
       duedate:dateRef.current.value
     })
 
-    console.log(res)
+    if(res.data.success){
+      notify(res.data.message)
+      setTimeout(()=>{
+        onClose()
+      },2500)
+    }
 
    
-    
-    // setTaskDetails({
-    //   taskname:taskRef.current.value,
-    //   priority:Object.keys(prioirty)[0],
-    //   assign:assiginRef.current.value,
-    //   taskdata:tasklist,
-    //   duedate:"21-9-2024"
-    // })
-   
-    // const res = await CreateTask(taskDetails)
-    // console.log(res)
   };
+
+  const handleUpdate =async()=>{
+    console.log("update clicked")
+    const res = await updateTask(id,{
+      taskname:taskRef.current.value,
+      priority:Object.keys(prioirty)[0],
+      assign:assiginRef.current.value,
+      taskdata:tasklist,
+      duedate:dateRef.current.value
+    })
+    console.log(res)
+    if(res.data.success){
+      notify(res.data.message)
+      setTimeout(()=>{
+        onClose()
+      },2500)
+    }
+  }
   
+
+  useEffect(()=>{
+    const fetchTask =async()=>{
+      if (mode === 'edit' && id){
+        try {
+          const res = await getTaskbyId(id)
+          console.log(res)
+          if(res.data.success){
+             taskRef.current.value = res.data.data.taskname || null
+            //  assiginRef.current.value = res.data.data.assign_email || null
+             dateRef.current.value = res.data.data.duedate || null
+
+             prioirty[res.data.data.priority] =true
+             setTasklist(res.data.data.taskdata || [])
+             const count = res.data.data.taskdata.reduce((acc, task) => (task.checked ? acc + 1 : acc), 0);
+             setCheckedCount(count);
+              
+             
+          }
+        } catch (error) {
+          return error
+        }
+      }
+     
+    }
+    fetchTask();
+  },[id])
  
 
   return (
@@ -332,6 +368,7 @@ export default function AddTask({ onClose ,id}) {
             <div key={field.id} className={styles.task_container}>
               <input
                 type="checkbox"
+                checked={field.checked}
                 placeholder="Enter Task"
                 style={{ cursor: "pointer" }}
                 onChange={(event) => {
@@ -340,6 +377,7 @@ export default function AddTask({ onClose ,id}) {
               />
               <input
                 type="text"
+                value={field.taskn}
                 placeholder="Enter Task"
                 className={styles.task_input_field}
                 onChange={(event) => handleOnchange(event, index)}
@@ -388,8 +426,8 @@ export default function AddTask({ onClose ,id}) {
           <button className={styles.btn_cancel} onClick={onClose}>
             Cancel
           </button>
-          <button className={styles.btn_save} onClick={() => handleSave()}>
-            Save
+          <button className={styles.btn_save} onClick={() => id ? handleUpdate():  handleSave()}>
+            {id ? "Update" : "Save"}
           </button>
         </div>
       </div>

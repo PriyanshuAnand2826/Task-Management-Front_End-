@@ -91,3 +91,16 @@ export const getPriorityCount =async()=>{
 }
 
 
+export const updateTask =async (taskId,data)=>{
+    try {
+      const res = await axios.put(`${import.meta.env.VITE_SOME_KEY}/task/update/${taskId}`,data,{
+        headers:{
+           "Content-Type": "application/json"
+        }
+      })
+      return res 
+    } catch (error) {
+       return error
+    }
+}
+

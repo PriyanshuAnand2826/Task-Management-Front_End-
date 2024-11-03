@@ -11,6 +11,7 @@ import AddTask from "../components/AddTask";
 import { ToastContainer } from "react-toastify";
 import { getTask } from "../services/task";
 import AddBoard from "../components/AddBoard";
+import filterTasks from "../data/filterTask";
 
 export default function Home() {
   const { date } = formatDate();
@@ -22,6 +23,8 @@ export default function Home() {
   const [Progress,setProgress] = useState([])
   const [Todo,setTodo] = useState([])
   const [Done,SetDone] = useState([])
+  const [filteredTasks, setFilteredTasks] = useState();
+  const [selectedFilter, setSelectedFilter] = useState("thisWeek"); // Default filter
 
 
   const btn_data =[
@@ -73,13 +76,26 @@ export default function Home() {
   const closeBoardModal =()=>{
     SetIsBoardModal(false)
   }
+  // function handleFilterChange(event) {
+  //   const filter = event.target.value;
+  //   setSelectedFilter(filter);
+  //   console.log(filter)
+  // }
 
+  // function filterTasksByDropdown(tasks, filter) {
+  //   const filtered = filterTasks(tasks); // Call your filter function
+  //   setFilteredTasks(filtered[filter]);
+  //   console.log(filteredTasks) 
+  // }
+ 
   useEffect(() => {
 
     const fetchData = async () => {
       try {
         const res = await getTask();
-
+        // filterTasksByDropdown(res.data.user_task, selectedFilter); 
+       
+         
          if(res.data.success){
           res.data.user_task.map((item,index)=>{
               if(item.tasktype==='Todo'){
@@ -146,10 +162,10 @@ export default function Home() {
             {isBoardModal && <Modal><AddBoard closemodal={closeBoardModal}/></Modal>}
           </div>
           <div>
-            <select className={styles.select} name="filter" id="filter">
-              <option  value="This Week">This Week</option>
-              <option value="This Week">Today</option>
-              <option value="This Month">This Month</option>
+            <select className={styles.select} value={selectedFilter}name="filter" id="filter" >
+              <option   value="thisWeek">This Week</option>
+              <option value="today">Today</option>
+              <option value="thisMonth">This Month</option>
             </select>
           </div>
         </div>

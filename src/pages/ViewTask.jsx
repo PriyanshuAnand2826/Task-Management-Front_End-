@@ -36,7 +36,7 @@ export default function ViewTask() {
         if(res.data.data.priority==='low'){
           setColorPriority('#63C05B')
         }
-        if(res.data.data.priority==='medium'){
+        if(res.data.data.priority==='mid'){
           setColorPriority('#18B0FF')
         }
         if(res.data.data.priority==='high'){
@@ -81,6 +81,7 @@ export default function ViewTask() {
            </div>
            <p style={{marginTop:'5%',fontSize:'20px'}}>{data.title}</p>
            <p style={{marginTop:'5%'}}>Checklist ({checkedCount}/{data.totallength})</p>
+           
            {data.taskdata.map((item,index)=>{
             return(
               <div key={index} className={styles.checklist}>
@@ -89,6 +90,7 @@ export default function ViewTask() {
            </div>
             )
            })}
+           
            
            {data.duedate && <div className={styles.footer}>
               <p>Due Date</p>
