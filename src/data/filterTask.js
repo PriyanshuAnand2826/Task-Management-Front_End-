@@ -1,44 +1,41 @@
-function filterTasks(tasks) {
+function filterTasks(tasks, filterType) {
   const today = new Date();
-  const startOfWeek = new Date(today);
-  startOfWeek.setDate(today.getDate() - today.getDay()); // Start of the week
-  const endOfWeek = new Date(today);
-  endOfWeek.setDate(today.getDate() + (6 - today.getDay())); // End of the week
-  const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1); // Start of the month
-  const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0); // End of the month
 
-  const filters = {
-    today: [],
-    thisWeek: [],
-    thisMonth: [],
-  };
+  // Calculate the start and end of the week (Monday to Sunday)
+  const startOfWeek = new Date(today);
+  const dayOfWeek = today.getDay();
+  const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek; // If Sunday (0), go back 6 days
+  startOfWeek.setDate(today.getDate() + mondayOffset);
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6); // Sunday
+
+  // Calculate the start and end of the month (1st to last day)
+  const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  const endOfMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0); // Last day of the month
+
+  // Create a filtered array based on the filterType
+  const filteredTasks = [];
 
   tasks.forEach((task) => {
-    if (!task.duedate) {
-      // Task with no due date; include it in all filters
-      filters.today.push(task);
-      filters.thisWeek.push(task);
-      filters.thisMonth.push(task);
+    const dueDate = task.duedate ? new Date(task.duedate) : null;
+
+    // Push tasks into the filtered array based on the filterType
+    if (!dueDate) {
+      // If no due date, include in all filters
+      filteredTasks.push(task);
     } else {
-      const dueDate = new Date(task.duedate);
-
-      // Check if it's due today
-      if (dueDate.toDateString() === today.toDateString()) {
-        filters.today.push(task);
+      if (filterType === 'today' && dueDate.toDateString() === today.toDateString()) {
+        filteredTasks.push(task);
       }
-
-      // Check if it's due this week
-      if (dueDate >= startOfWeek && dueDate <= endOfWeek) {
-        filters.thisWeek.push(task);
+      if (filterType === 'thisWeek' && dueDate >= startOfWeek && dueDate <= endOfWeek) {
+        filteredTasks.push(task);
       }
-
-      // Check if it's due this month
-      if (dueDate >= startOfMonth && dueDate <= endOfMonth) {
-        filters.thisMonth.push(task);
+      if (filterType === 'thisMonth' && dueDate >= startOfMonth && dueDate <= endOfMonth) {
+        filteredTasks.push(task);
       }
     }
   });
 
-  return filters;
+  return filteredTasks;
 }
- export default filterTasks
+export default filterTasks

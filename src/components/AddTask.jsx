@@ -154,7 +154,9 @@ export default function AddTask({ onClose ,id,mode}) {
 
   //handle save button
   const handleSave = async() => {
+    let isError =false
     if (taskRef.current.value.length === 0) {
+      isError=true
       setError((error) => ({ ...error, taskTitle: true }));
     }
     if (
@@ -162,23 +164,24 @@ export default function AddTask({ onClose ,id,mode}) {
       prioirty.mid === false &&
       prioirty.low === false
     ) {
+      isError=true
       setError((error) => ({ ...error, Priorty: true }));
     }
 
     if (tasklist.length === 0) {
+      isError=true
       setError((error) => ({ ...error, taskLength: true }));
     }
     {
       tasklist.map((item) => {
-        if (!item.taskName || item.taskName === "") {
+        if (!item.taskn || item.taskn === "") {
+          isError=true
           setError((error) => ({ ...error, taskName: true }));
         }
       });
     }
-     
-
-    
-
+    if(!isError){
+       
     const res = await CreateTask({
       taskname:taskRef.current.value,
       priority:Object.keys(prioirty)[0],
@@ -193,6 +196,11 @@ export default function AddTask({ onClose ,id,mode}) {
         onClose()
       },2500)
     }
+    }
+     
+
+    
+
 
    
   };
