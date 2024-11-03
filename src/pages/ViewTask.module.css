@@ -63,13 +63,15 @@
 .container ::-webkit-scrollbar {
   width: 5px;
 }
+
+.container::-webkit-scrollbar-track{
+  border-radius: 5px;
+}
+
 .container::-webkit-scrollbar-thumb{
   background: #8DAAB9CC;
   opacity: 0.6;
   border-radius: 10px;
-}
-.container::-webkit-scrollbar-track{
-  border-radius: 5px;
 }
 
 @media (max-width: 768px){
