@@ -24,7 +24,8 @@ export const getTask =async ()=>{
 export const CreateTask =async (data)=>{
      const res = await axios.post(`${import.meta.env.VITE_SOME_KEY}/task/create`,data,{
       headers:{
-        Authorization: `${localStorage.getItem("token")}`
+        Authorization: `${localStorage.getItem("token")}`,
+        "Content-Type": "application/json"
       }
      })
      return res
@@ -59,6 +60,34 @@ export const getTaskbyId =async (id)=>{
    } catch (error) {
       return error
    }
+}
+
+
+export const getTasktypeCount =async()=>{
+  try {
+    const res = await axios.get(`${import.meta.env.VITE_SOME_KEY}/task/tastypecount`,{
+      headers:{
+         Authorization: `${localStorage.getItem("token")}`
+      }
+    });
+    return res
+  } catch (error) {
+    return error 
+  }
+}
+
+
+export const getPriorityCount =async()=>{
+  try {
+    const res = await axios.get(`${import.meta.env.VITE_SOME_KEY}/task/prioritytype`,{
+      headers:{
+         Authorization: `${localStorage.getItem("token")}`
+      }
+    });
+    return res
+  } catch (error) {
+    return error 
+  }
 }
 
 

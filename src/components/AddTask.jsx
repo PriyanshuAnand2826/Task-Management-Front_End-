@@ -182,18 +182,30 @@ export default function AddTask({ onClose ,id}) {
       });
     }
 
-    setTaskDetails({
+    const res = await CreateTask({
       taskname:taskRef.current.value,
       priority:Object.keys(prioirty)[0],
       assign:assiginRef.current.value,
       taskdata:tasklist,
-      duedate:"21-9-2024"
+      duedate:dateRef.current.value
     })
+
+    console.log(res)
+
+   
+    
+    // setTaskDetails({
+    //   taskname:taskRef.current.value,
+    //   priority:Object.keys(prioirty)[0],
+    //   assign:assiginRef.current.value,
+    //   taskdata:tasklist,
+    //   duedate:"21-9-2024"
+    // })
    
     // const res = await CreateTask(taskDetails)
     // console.log(res)
   };
-  console.log(taskDetails)
+  
  
 
   return (

@@ -18,5 +18,6 @@
 .task_name{
   display: flex;
   gap: 5px;
+  text-transform: uppercase;
 
 }
