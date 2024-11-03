@@ -1,5 +1,5 @@
 import './App.css'
-import {BrowserRouter , Routes , Route } from 'react-router-dom'
+import {BrowserRouter , Routes , Route,Navigate } from 'react-router-dom'
 import Register from './pages/Register'
 import Login from './pages/Login'
 import NotFound from './pages/NotFound'
@@ -11,6 +11,16 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
+  const ProtectRoute=({children})=>{
+    const token =localStorage.getItem("token")
+    if(!token){
+      return <Navigate to="/" />
+    } 
+    else{
+      return children;
+    }
+
+  }
 
  return (
     <>
@@ -18,11 +28,24 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Register />} /> 
-          <Route path="/login" element={<Login/>} /> 
-          <Route path="/board" element={<Home/>} /> 
-          <Route path="/analytics" element={<Analytics/>} /> 
-          <Route path="/settings" element={<Settings/>} /> 
-          <Route path="/viewtask/:id" element={<ViewTask/>} /> 
+          <Route path="/login" element={
+            <Login/>} /> 
+          <Route path="/board" element={
+            <ProtectRoute>
+            <Home/>
+            </ProtectRoute>} /> 
+          <Route path="/analytics" element={
+            <ProtectRoute>
+            <Analytics/>
+            </ProtectRoute>} /> 
+          <Route path="/settings" element={
+            <ProtectRoute>
+            <Settings/>
+            </ProtectRoute>} /> 
+          <Route path="/viewtask/:id" element={
+            <ProtectRoute>
+            <ViewTask/>
+            </ProtectRoute>} /> 
           <Route path="*" element={<NotFound/>} /> 
         </Routes>
       
