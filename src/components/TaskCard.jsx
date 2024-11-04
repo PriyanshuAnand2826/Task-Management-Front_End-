@@ -118,9 +118,23 @@ export default function TaskCard({isCollapse,data,btn_data}) {
    const res = await updateTaskType(id,type)
    notify(res.data.message)
   }
+  
 
-  const handleShareClick=()=>{
-    navigate(`/viewtask/${data._id}`)
+  const link = `https://task-management-front-end-gules.vercel.app/viewtask/${data._id}`
+
+
+  const handleShareClick=async()=>{
+    
+    try { 
+      await navigator.clipboard.writeText(link); 
+      notify('Link copied to clipboard!'); 
+    } 
+    catch (err) { 
+      notify('Failed to copy: ', err); 
+    }
+    setTimeout(()=>{
+      navigate(`/viewtask/${data._id}`)
+    },2300) 
   }
 
   const handleEditClick=()=>{
@@ -185,7 +199,7 @@ export default function TaskCard({isCollapse,data,btn_data}) {
           return(
             <div key={index} className={styles.task_container}>
             <input type="checkbox" checked={item.checked}/>
-            <span style={{ marginTop: "5%" }}>{item.taskn}</span>
+            <span >{item.taskn}</span>
           </div>
           )
         })}

@@ -42,10 +42,7 @@ function App() {
             <ProtectRoute>
             <Settings/>
             </ProtectRoute>} /> 
-          <Route path="/viewtask/:id" element={
-            <ProtectRoute>
-            <ViewTask/>
-            </ProtectRoute>} /> 
+          <Route path="/viewtask/:id" element={<ViewTask/>} /> 
           <Route path="*" element={<NotFound/>} /> 
         </Routes>
       

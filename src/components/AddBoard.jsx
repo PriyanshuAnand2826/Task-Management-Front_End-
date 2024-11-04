@@ -52,7 +52,7 @@ const handleEnterPress=(event)=>{
       {error && <span style={{color:'red',fontSize:'12px',marginTop:'-2%',marginLeft:'2%'}}>Field is required</span>}
       <div className={styles.footer}>
       <button className={styles.btn_left} onClick={closemodal}>Cancel</button>
-      <button className={styles.btn_right} onClick={()=>handleBoard()} onKeyPress={()=>handleEnterPress(event)}>Add Board</button>
+      <button className={styles.btn_right} onClick={()=>handleBoard()} onKeyPress={handleEnterPress}>Add Board</button>
       <ToastContainer
           position="top-right"
           autoClose={2500}

@@ -6,6 +6,8 @@ import promanage from "../assets/codesandbox.png";
 import { GoDotFill } from "react-icons/go";
 import formatDate from "../data/formatDate";
 import shortFormatdate from "../data/shortFormatdate";
+import { MdContentCopy } from "react-icons/md";
+import { ToastContainer,toast } from "react-toastify";
 
 export default function ViewTask() {
   const { id } = useParams();
@@ -59,6 +61,22 @@ export default function ViewTask() {
 
   const checkedCount = data.taskdata.filter(item => item.checked).length;
   const {date} =shortFormatdate(data.duedate)
+  const notify =(data)=>{
+    toast(data,{
+    className:'custom-toast',
+    progressClassName:'custom-progress-login',
+    style:{color:'white',fontFamily:'Poppins',fontWeight:'bold',textAlign:'center',fontSize:'15px'}
+    })
+    }
+     const link = `https://task-management-front-end-gules.vercel.app/viewtask/${id}`
+    const handleCopyClick=async()=>{
+       try {
+        await navigator.clipboard.writeText(link); 
+        notify('Link copied to clipboard!'); 
+       } catch (error) {
+        notify('Failed to copy: ', err); 
+       } 
+    }
 
   return (
     <div className={styles.container}>
@@ -76,8 +94,14 @@ export default function ViewTask() {
       <div className={styles.right}>
         <div className={styles.right_container}>
            <div className={styles.header}>
+            <div className={styles.sub_header}>
             <GoDotFill color={colorPriroity} />
             <span style={{fontSize:'12px',color:'#707070',textTransform:'uppercase'}}>{data.priority} Priority</span>
+            </div>
+            <div className={styles.sub_header1}>
+               <MdContentCopy size={20} style={{marginRight:'10%'}} cursor={"pointer"} onClick={handleCopyClick}/>
+               
+            </div>
            </div>
            <p style={{marginTop:'5%',fontSize:'20px'}}>{data.title}</p>
            <p style={{marginTop:'5%'}}>Checklist ({checkedCount}/{data.totallength})</p>
@@ -90,6 +114,18 @@ export default function ViewTask() {
            </div>
             )
            })}
+            <ToastContainer
+          position="top-right"
+          autoClose={2500}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="dark"
+        />
            
            
            {data.duedate && <div className={styles.footer}>

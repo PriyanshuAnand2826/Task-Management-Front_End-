@@ -39,8 +39,13 @@
 }
 .header{
   display: flex;
+  justify-content: space-between;
+}
+.sub_header{
+  display: flex;
   gap: 4px;
 }
+
 .checklist{
   display: flex;
   border: 1.5px solid #E2E2E2;

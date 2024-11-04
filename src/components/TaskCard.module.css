@@ -62,6 +62,7 @@
 .task_container{
   display: flex;
   gap: 10px;
+  margin-top: 5%;
 }
 .task_container span{
   font-size: 15px;

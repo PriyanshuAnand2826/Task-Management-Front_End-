@@ -74,7 +74,7 @@ export default function Form({
           pauseOnFocusLoss
           draggable
           pauseOnHover
-          theme="darkk"
+          theme="dark"
         />
         {newUser ? "Register" : "Login"}
       </button>
