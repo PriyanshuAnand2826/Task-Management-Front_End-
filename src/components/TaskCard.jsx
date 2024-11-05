@@ -20,6 +20,7 @@ export default function TaskCard({isCollapse,data,btn_data}) {
   const [isDeletemodelOpen, setIsDeletemodal] = useState(false);
   const [isEditModal, setIsEditModal] = useState(false);
   const [colorPriroity,setColorPriority] =useState()
+  const [isTaskdeleted,setisTaskdeleted] =useState(false)
   const [isHigh,setIsHigh] =useState(false)
   const menuRef=useRef(null)
   const navigate = useNavigate()
@@ -29,6 +30,9 @@ export default function TaskCard({isCollapse,data,btn_data}) {
 
 
   const openmodal = () => {
+    if(isTaskdeleted){
+      return  notify("Task is already deleted")
+     }
     setIsDeletemodal(true);
   };
   const closemodal = () => {
@@ -42,11 +46,14 @@ export default function TaskCard({isCollapse,data,btn_data}) {
     setIsEditModal(false)
   }
   const handleDelete = async ()=>{
+    
     try {
       const res = await DeleteTask(data._id)
-      console.log(res)
-      notify(res.data.message)
+      // console.log(res)
+      setisTaskdeleted(true)
       closemodal()
+      notify(res.data.message)
+      
     } catch (error) {
        return error
     }
@@ -115,6 +122,9 @@ export default function TaskCard({isCollapse,data,btn_data}) {
     }
 
   const handletasktypeupdate =async (id,type)=>{
+    if(isTaskdeleted){
+     return notify("Task is deleted")
+    }
    const res = await updateTaskType(id,type)
    notify(res.data.message)
   }
@@ -126,18 +136,33 @@ export default function TaskCard({isCollapse,data,btn_data}) {
   const handleShareClick=async()=>{
     
     try { 
-      await navigator.clipboard.writeText(link); 
-      notify('Link copied to clipboard!'); 
+      if(isTaskdeleted){
+        notify("Can' Copy Link Task is Deleted")
+      }
+      else{
+        await navigator.clipboard.writeText(link); 
+        notify('Link copied to clipboard!'); 
+      }
+     
     } 
     catch (err) { 
       notify('Failed to copy: ', err); 
     }
-    setTimeout(()=>{
-      navigate(`/viewtask/${data._id}`)
-    },2300) 
+
+    if(!isTaskdeleted){
+      setTimeout(()=>{
+     
+        navigate(`/viewtask/${data._id}`)
+      },2300)
+
+    }
+     
   }
 
   const handleEditClick=()=>{
+    if(isTaskdeleted){
+      return notify("Task is deleted")
+    }
     setIsEditModal(true)
   }
 

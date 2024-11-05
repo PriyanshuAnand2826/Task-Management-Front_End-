@@ -13,6 +13,7 @@ export default function ViewTask() {
   const { id } = useParams();
   const [colorPriroity,setColorPriority] =useState()
   const [count,setcount] =useState(0)
+  const [error,seterror] =useState(false)
   const [data,setdata] =useState({
     title: "",
     priority:"",
@@ -26,6 +27,9 @@ export default function ViewTask() {
       try {
         const res = await getTaskbyId(id);
         console.log(res)
+        if(res.status === 404){
+         seterror(true)
+        }
         if(res.data.success){
             setdata({
               title: res.data.data.taskname,
@@ -71,8 +75,14 @@ export default function ViewTask() {
      const link = `https://task-management-front-end-gules.vercel.app/viewtask/${id}`
     const handleCopyClick=async()=>{
        try {
-        await navigator.clipboard.writeText(link); 
-        notify('Link copied to clipboard!'); 
+        if(error){
+          notify("Can't Copy Task is Deleted")
+        }
+        else{
+          await navigator.clipboard.writeText(link); 
+          notify('Link copied to clipboard!');
+        }
+         
        } catch (error) {
         notify('Failed to copy: ', err); 
        } 
