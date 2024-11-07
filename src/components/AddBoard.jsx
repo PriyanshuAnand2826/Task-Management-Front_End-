@@ -48,11 +48,11 @@ const handleEnterPress=(event)=>{
   return (
     <div className={styles.container}>
       <p style={{fontWeight:'bold'}}>Add people to the board</p>
-      <input className={styles.input} ref={emailRef} type="email" placeholder='Enter Email'/>
+      <input className={styles.input} ref={emailRef} type="email" placeholder='Enter Email' onKeyPress={handleEnterPress}/>
       {error && <span style={{color:'red',fontSize:'12px',marginTop:'-2%',marginLeft:'2%'}}>Field is required</span>}
       <div className={styles.footer}>
       <button className={styles.btn_left} onClick={closemodal}>Cancel</button>
-      <button className={styles.btn_right} onClick={()=>handleBoard()} onKeyPress={handleEnterPress}>Add Board</button>
+      <button className={styles.btn_right} onClick={()=>handleBoard()} >Add Board</button>
       <ToastContainer
           position="top-right"
           autoClose={2500}
